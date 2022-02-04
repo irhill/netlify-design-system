@@ -1,4 +1,4 @@
 ---
 title: A pattern
 ---
-\## this is a pattern heading
+## this is a pattern heading
