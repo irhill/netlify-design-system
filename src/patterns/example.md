@@ -12,4 +12,6 @@ tabs:
 
       ## a subheading
       some more content
+
+      updating the content for tab tres
 ---
