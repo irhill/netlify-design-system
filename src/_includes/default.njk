@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    {% include "./partials/favicons.njk" %}
+  
+    {% set css %}
+      {% include "../assets/css/mosaic-global.css" %}
+      {% include "../assets/css/mosaic-utilities.css" %}
+      {% include "../assets/css/core.css" %}
+      {% include "../assets/css/forms.css" %}
+      {% include "../assets/css/site.css" %}
+    {% endset %}
+
+    <style>
+      {{ css | safe }}
+    </style>
+
+    <title>
+      {{title}}
+    </title>
+    {% if description %}
+      <meta name="description" content="{{description}}"/>
+    {% endif %}
+  </head>
+  <body>
+
+    <div class="mcc-navbar mu-d-lg-none">
+      <button class="mcc-navbar__button" onclick="showSiteNav()">
+        <mcc-icon name="menu" aria-hidden="true"></mcc-icon>
+        <span class="mu-visually-hidden">Show menu</span>
+      </button>
+      <span class="mu-fw-semi-bold">Mosaic Design System</span>
+    </div>
+
+    <div class="mu-d-flex">
+      <mcc-sheet id="site-nav-sheet" class="mcc-sheet--left mu-border-end mu-py-05 mu-px-02" style="width: 280px; background-color: var(--ui-01, #fff); height: 100vh; box-shadow: none;">
+        <div class="mu-d-none mu-d-lg-flex mu-mb-05 mu-mx-03 mu-py-04 mu-px-05">
+          <img class="mu-d-none mu-d-lg-block mu-mr-04" src="https://cdn.svc.oneadvanced.com/mosaic/2.0.0/img/logo.svg" width="24" height="24" alt="Advanced Logo">
+          <span class="mu-fw-semi-bold">Mosaic Design System</span></span>
+        </div>
+        {% include "./partials/site-nav.njk" %}
+      </mcc-sheet>
+      <div class="page-content">
+        <main class="mu-h-100">
+          <header class="mcc-page-header">
+            <h1 class="mu-mb-00">{{ title }}</h1>
+            {% include "./partials/theme-toggle.njk" %}
+          </header>
+
+          {% if tabs %}
+            {% include "./partials/tab-layout.njk" %}
+          {% else %}
+            {% from "./macros/table-of-contents.njk" import generateToc %}
+            {{ generateToc(content) }}
+            {{ content | safe }}
+          {% endif %}
+
+          {% set previous = collections.globalCollection | getPreviousCollectionItem(page) %}
+          {% set next = collections.globalCollection | getNextCollectionItem(page) %}
+          {% if previous %}<a href="{{ previous.url }}">{{ previous.data.title }}</a>{% endif %}
+          {% if next %}<a href="{{ next.url }}">{{ next.data.title }}</a>{% endif %}
+        </main>
+      </div>
+    </div>
+      
+    <script src="{% js "web-components.js" %}" type="module"></script>
+    <script src="{% js "default.js" %}"></script>
+
+    {% if path == "home" %}
+      <!-- Netlify Identity Widget -->
+      <!-- Needed only if you are using Netlify Identity feature -->
+      <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    {% endif %}
+
+  </body>
+</html>

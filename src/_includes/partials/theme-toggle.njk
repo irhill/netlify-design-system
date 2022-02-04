@@ -1,0 +1,63 @@
+
+
+<div class="mu-d-flex mu-align-items-center mu-border-0 mu-px-05">
+  <input type="checkbox" class="checkbox" id="theme-toggle">
+  <label for="theme-toggle" class="label">
+    <mcc-icon name="moon" aria-hidden="true" width="18" height="18"></mcc-icon>
+    <mcc-icon name="sun" aria-hidden="true" width="18" height="18"></mcc-icon>
+    <div class='ball'>
+  </label>
+</div>
+
+<style>
+  .checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 50px;
+  height: 26px;
+  /* background-color:#111; */
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: var(--ui-01, #fff);
+  border: 1px solid var(--ui-06, #fff);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+
+.mcc-icon[name="moon"] {
+  color: pink;
+}
+
+.mcc-icon[name="sun"] {
+  color: yellow;
+}
+</style>
+
+{% set js %}
+  {% include "js/theme-toggle.js" %}
+{% endset %}
+
+<script>
+  {{ js | jsmin | safe }}
+</script>

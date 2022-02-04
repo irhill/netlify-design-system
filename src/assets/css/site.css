@@ -1,0 +1,42 @@
+.mcc-page-header--navbar-adjust {
+  top: var(--navbar-height);
+}
+
+body {
+  font-weight: 400;
+}
+
+article ul > li {
+  margin-bottom: 1.25rem;
+}
+
+.page-content {
+  flex: 1;
+}
+
+.mcc-drawer {
+  position: fixed;
+  left: 0;
+}
+
+:root {
+  --mcc-drawer-width: 280px;
+  --navbar-height: 4rem
+}
+
+@media (min-width: 960px) {
+  .mcc-sheet.mcc-sheet--in-view.mcc-sheet--left + .mcc-sheet-scrim {
+    visibility: hidden;
+  }
+  .mcc-sheet.mcc-sheet--in-view.mcc-sheet--left ~ .page-content {
+    margin-left: var(--mcc-drawer-width, 256px);
+  }
+}
+
+article > :not([class*="video"]):not(pre):not(table) {
+  max-width: 48rem;
+}
+
+/* body {
+  background-color: var(--ui-01, #eeeef1);
+} */

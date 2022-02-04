@@ -1,0 +1,17 @@
+<header class="mcc-navbar mu-position-sticky mu-top-0 mu-px-04" aria-label="Mosaic Design System" role="banner"> 
+  <button class="mcc-navbar__button mu-d-lg-none" type="button" onclick="toggleNavSheet()">
+    <mcc-icon class="mcc-sidebar__icon" name="menu"></mcc-icon>
+    <div class="mu-visually-hidden">Toggle menu</div>
+  </button>
+  <div class="mcc-navbar__name mu-px-lg-05">
+    <img class="mu-d-none mu-d-lg-block" src="https://cdn.svc.oneadvanced.com/mosaic/2.0.0/img/logo.svg" width="24" height="24" alt="Advanced Logo">
+    <span class="mu-fw-semi-bold">Mosaic Design System</span></span>
+  </div>
+  <nav class="mcc-navbar__global">
+    {% include "./theme-toggle.njk" %}
+    <!-- <button class="mcc-navbar__button mu-border-0" title="Switch sites">
+      <mcc-icon name="thumbnails" aria-hidden="true"></mcc-icon>
+      <span class="mu-visually-hidden">Switch sites</span>
+    </button> -->
+  </nav>
+</header>

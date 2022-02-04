@@ -1,0 +1,13 @@
+{% set js %}
+  {% include "js/navigation.js" %}
+{% endset %}
+
+<script>
+  {{ js | jsmin | safe }}
+</script>
+
+<aside class="mcc-drawer" id="drawer">
+  <div class="mcc-drawer__content">
+    
+  </div>
+</aside>

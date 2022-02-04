@@ -1,0 +1,111 @@
+{% set js %}
+  {% include "js/component/code.js" %}
+{% endset %}
+
+<script>
+  {{ js | safe }}
+</script>
+
+{% from "../../macros/table-of-contents.njk" import generateToc %}
+{{ generateToc(code.body) }}
+
+<!-- code content -->
+<div class="mu-pt-05">{{ code.body | markdownify | safe }}</div>
+
+<!-- container for displaying component preview with variants etc.. -->
+<div class="mu-pt=05">
+  <!-- 'header' section for switching variants etc.. -->
+  <div class="mu-d-flex mu-justify-content-evenly">
+    <span id="variant-name">Select variant</span>
+    <details id="variant-selector" class="mcc-dropdown">
+      <summary class="mcc-button mcc-button--primary" aria-haspopup="true">
+        <span class="mcc-button__label">Variants</span>
+        <mcc-icon class="mcc-button__dropdown-caret" name="angle_down" aria-hidden="true"></mcc-icon>
+      </summary>
+      <ul class="mcc-dropdown__menu">
+
+        {% for variant in code.preview.variants %}
+          <li>
+            <button type="button" onclick="showVariant('{{ variant.name }}')">
+              <div>{{ variant.name }}</div>
+            </button>
+          </li>
+        {% endfor %}
+
+      </ul>
+    </details>
+  </div>
+
+  {% for variant in code.preview.variants %}
+    <div id="{{ variant.name | snake_case_filter }}" class="[ variant-container ] [ mu-d-none mu-pt-05 ]">
+      <!-- preview panel for displaying component -->
+      <div class="[ variant-template ] [ mu-flex-grow-1 ] [ mu-d-flex mu-justify-content-center mu-align-items-center ]" style="height: 200px; position: relative; overflow: hidden;">
+        {{ variant.template.code | safe }}
+      </div>
+      <!-- options panel for switching modifiers -->
+      <div class="variant-modifiers" style="width: 500px;">
+        <mcc-accordion>
+          {% for modifier in variant.modifiers %}
+            <details class="mcc-accordion">
+              <summary>
+                <span class="mcc-accordion__label">{{ modifier.name }}</span>
+                <mcc-icon class="mcc-accordion__caret mu-ml-auto" name="angle_down" aria-hidden="true"></mcc-icon>
+              </summary>
+              <div class="mcc-accordion__body">
+                <form class="class-form">
+                  <fieldset class="mfc-fieldset">
+                    {% for class in modifier.classes  %}
+                      <div class="[ mfc-radio-button-wrapper ] [ mu-mb-03 ]">
+                        <input
+                          id="{{ variant.name | snake_case_filter }}_{{ modifier.name | snake_case_filter }}_{{ class.name | snake_case_filter }}"
+                          name="{{ variant.name | snake_case_filter }}_{{ modifier.name | snake_case_filter }}"
+                          type="radio"
+                          onchange="modifyVariant({{ variant.template.code | stringify_filter }})"
+                          data-selector={{ modifier.selector }}
+                          data-value={{ class.value }}>
+                        <label for="{{ variant.name | snake_case_filter }}_{{ modifier.name | snake_case_filter }}_{{ class.name | snake_case_filter }}">
+                          <span>{{ class.name }}</span>
+                          <span>Apply the <span class="mu-fw-bolder">{{ class.value }}</span> class</span>
+                        </label>
+                      </div>
+                    {% endfor %}
+                  </fieldset>
+                </form>
+              </div>
+            </details>
+          {% endfor %}
+
+          <!-- attributes -->
+          {% if variant.attributes %}
+          <details class="mcc-accordion">
+            <summary>
+              <span class="mcc-accordion__label">Attributes</span>
+              <mcc-icon class="mcc-accordion__caret mu-ml-auto" name="angle_down" aria-hidden="true"></mcc-icon>
+            </summary>
+            <div class="mcc-accordion__body">
+              <form class="attribute-form">
+                <fieldset class="mfc-fieldset">
+                  {% for attribute in variant.attributes %}
+                    <div class="mfc-checkbox-wrapper">
+                      <input
+                        id="{{ variant.name | snake_case_filter }}_{{ attribute.name | snake_case_filter }}"
+                        name="{{ variant.name | snake_case_filter }}_{{ attribute.name | snake_case_filter }}"
+                        type="checkbox"
+                        onchange="modifyVariant({{ variant.template.code | stringify_filter }})"
+                        data-selector={{ attribute.selector }}
+                        data-attribute-details={{ attribute | stringify_filter }}>
+                      <label for="{{ variant.name | snake_case_filter }}_{{ attribute.name | snake_case_filter }}">{{ attribute.name }}</label>
+                    </div>
+                  {% endfor %}
+                </fieldset>
+              </form>
+            </div>
+          </details>
+          {% endif %}
+
+        </mcc-accordion>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>

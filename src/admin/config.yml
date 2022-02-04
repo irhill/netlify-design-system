@@ -1,0 +1,315 @@
+backend:
+  # Use netlify identity as backend
+  name: git-gateway
+  branch: master
+  ### enable below lines for github integration ###
+  # name: github
+  # repo: surjithctly/neat-starter
+media_folder: "src/assets/img"
+public_folder: "/assets/img"
+
+# Please run "npx netlify-cms-proxy-server" for local backend
+local_backend: true
+# publish_mode: editorial_workflow
+collections:
+  - label: "Mosaic"
+    name: "mosaic"
+    folder: "src/mosaic"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+  - label: "Developing"
+    name: "developing"
+    folder: "src/developing"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+  - label: "Designing"
+    name: "designing"
+    folder: "src/designing"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+  - label: "Guideline"
+    name: "guidelines"
+    folder: "src/guidelines"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+  - label: "Component"
+    name: "components"
+    folder: "src/components"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+      - label: "Code"
+        name: "code"
+        widget: object
+        required: false
+        fields:
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+          - label: "Preview"
+            name: "preview"
+            widget: "object"
+            fields:
+              - label: "Variants"
+                name: "variants"
+                widget: "list"
+                fields:
+                  - label: "Name"
+                    name: "name"
+                    widget: "string"
+                  - label: "Template"
+                    name: "template"
+                    widget: "code"
+                    default_language: "html"
+                    allow_language_selection: false
+                  - label: "Modifiers"
+                    name: "modifiers"
+                    widget: "list"
+                    fields:
+                      - label: "Name"
+                        name: "name"
+                        widget: "string"
+                      - label: "Selector"
+                        name: "selector"
+                        widget: "string"
+                      - label: "Classes"
+                        name: "classes"
+                        widget: "list"
+                        fields:
+                          - label: "Name"
+                            name: "name"
+                            widget: "string"
+                          - label: "Value"
+                            name: "value"
+                            widget: "string"
+                  - label: "Attributes"
+                    name: "attributes"
+                    widget: "list"
+                    fields:
+                      - label: "Name"
+                        name: "name"
+                        widget: "string"
+                      - label: "Selector"
+                        name: "selector"
+                        widget: "string"
+                      - label: "Attribute"
+                        name: "attribute"
+                        widget: "string"
+                      - label: "Value"
+                        name: "value"
+                        widget: "string"
+                        required: false
+  - label: "Pattern"
+    name: "patterns"
+    folder: "src/patterns"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
+  - label: "Help"
+    name: "help"
+    folder: "src/help"
+    create: true
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Order"
+        name: "order"
+        widget: "number"
+      - label: "Hero image"
+        name: "hero"
+        widget: "image"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        required: false
+      - label: "Tabs"
+        name: "tabs"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Hook"
+            name: "hook"
+            widget: "string"
+            required: false
+          - label: "Body"
+            name: "body"
+            widget: "markdown"
+            required: false
