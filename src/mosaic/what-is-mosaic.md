@@ -4,12 +4,9 @@ order: 1
 ---
 What is mosaic? jhfgjkhd kfghfgjkd
 
-### Heading
+## Heading
 
 ksjadj sadjd 
 
-### Heading
-
-dhadhjkashdk hashdjkas
-
-hello
+## Heading
+A little bit of useful content
