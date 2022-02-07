@@ -10,7 +10,3 @@ ksjadj sadjd
 
 ## Heading
 A little bit of useful content
-
-dhadhjkashdk hashdjkas
-
-hello
